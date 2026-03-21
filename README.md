@@ -1,13 +1,11 @@
-# Agent Runtime Verification
+# Agent Runtime Verification & Governance
 
-This repository contains datasets and supporting materials from a series of experiments investigating the behavior of autonomous AI agents under **runtime verification**.
+This repository contains datasets and supporting materials from a series of experiments investigating the behavior of autonomous AI agents under **runtime verification and governance**.
 
-The experiments explore how **trace-based verification infrastructure** can be used to evaluate and govern autonomous AI systems operating in real-world software environments.
+As large language models evolve from conversational systems into **operational agents capable of executing actions**, new forms of infrastructure are required to evaluate not only whether tasks succeed, but whether agents behave correctly during execution.
 
-As large language models evolve from conversational systems into **operational agents capable of executing actions**, new forms of reliability infrastructure may be required to observe and evaluate their decision processes.
-
-Traditional evaluation approaches typically measure whether a task appears to succeed.  
-Runtime verification focuses instead on **how the agent reached that outcome**, by analyzing the execution trace produced during the run.
+Traditional evaluation approaches measure outcomes.  
+These experiments focus instead on **runtime behavior** — how agents gather evidence, follow workflow constraints, make decisions, and handle failure conditions.
 
 ---
 
@@ -17,10 +15,11 @@ The experiments in this repository examine several questions related to autonomo
 
 - Can execution traces be used to systematically classify agent failures?
 - Do different model families exhibit stable behavioral failure signatures?
-- How often do agents reach correct outcomes through flawed reasoning processes?
-- Can runtime verification identify intervention points before unsafe actions occur?
+- How often do agents reach correct outcomes through flawed decision processes?
+- Can outcome-based evaluation misrepresent agent behavior in workflow settings?
+- What additional infrastructure is required to evaluate and govern agent decisions at runtime?
 
-The datasets released here are intended to support independent analysis of **agent behavior, failure signatures, and runtime decision verification.**
+The datasets released here are intended to support analysis of **agent behavior, failure signatures, and runtime decision evaluation** under controlled conditions.
 
 ---
 
@@ -37,23 +36,27 @@ Experiment_XX/
 
 ### `run_review.csv`
 
-A structured dataset containing the results of runtime agent executions evaluated in the experiment.
+A structured dataset containing **run-level summaries** of agent executions.
 
 Each row represents a single run and includes fields describing:
 
 - model used
 - scenario evaluated
-- classification results
-- policy evaluation outcome
-- failure taxonomy label
+- legacy outcome-based result
+- structural validity classification
+- governance-relevant outcome signals
+- failure taxonomy labels
+
+The dataset is designed to support reconstruction of **aggregate results reported in the associated research papers**, including model-level and scenario-level distributions.
 
 ### `GLOSSARY.md`
 
-A public glossary describing the terminology used in the experiment and dataset, including definitions for:
+A public glossary describing the terminology used in the experiment and dataset, including:
 
-- runtime verification concepts
+- runtime verification and governance concepts
 - dataset terminology
-- behavioral failure taxonomy categories
+- evaluation layers and outcome categories
+- behavioral failure taxonomy
 
 ---
 
@@ -61,9 +64,11 @@ A public glossary describing the terminology used in the experiment and dataset,
 
 ## Experiment 01 — Runtime Verification Behavior Study
 
-A controlled runtime experiment evaluating the behavior of frontier models operating as autonomous agents.
+A controlled runtime experiment evaluating whether trace-based verification can identify behavioral failures that are not visible under outcome-only evaluation.
 
-The experiment analyzes whether trace-based verification infrastructure can identify behavioral failures that remain invisible under outcome-only evaluation.
+This experiment establishes that:
+
+> Agents can reach correct outcomes through flawed internal processes.
 
 Models evaluated include:
 
@@ -73,7 +78,7 @@ Models evaluated include:
 - GPT-4o-mini
 - Gemini 2.5 Flash
 
-Dataset location:
+Dataset:
 
 ```
 Experiment_01/run_review.csv
@@ -81,29 +86,53 @@ Experiment_01/run_review.csv
 
 ---
 
-# Dataset Purpose
+## Experiment 02 — Runtime Governance for Workflow-Realistic Agents
 
-The datasets in this repository are provided to support independent research into:
+A large-scale (850-run) study evaluating agent behavior in **workflow-realistic operational environments**, including incident response, deployment workflows, approval-gated changes, and compliance scenarios.
 
-- agent runtime behavior
-- model failure signatures
-- trace-based reliability evaluation
-- runtime verification techniques
+This experiment introduces a governance-aware evaluation lens and shows that:
 
-They are not intended to represent a complete characterization of model reliability, but rather to provide **structured observations from controlled runtime experiments.**
+> Outcome-based scoring systematically misclassifies agent behavior by failing to distinguish true failure, invalid execution, and correct remediation.
+
+Key findings include:
+
+- Outcome-based evaluation overstates failure by collapsing multiple behavior types into a single label
+- A significant portion of runs represent **correct remediation behavior**, not failure
+- Structural workflow validity and decision correctness are separable dimensions of agent performance
+
+Dataset:
+
+```
+Experiment_02/run_review.csv
+```
+
+---
+
+# Dataset Scope
+
+The datasets in this repository provide **structured run-level summaries** of controlled experiments.
+
+They are designed to:
+
+- support independent analysis of reported results
+- enable reconstruction of aggregate findings
+- expose behavioral patterns across models and scenarios
+
+They are **not intended to include full raw execution traces or internal system implementations**.
 
 ---
 
 # Associated Research
 
-These datasets accompany research exploring the role of runtime verification infrastructure in the reliable deployment of autonomous AI systems.
+These datasets accompany research on the role of runtime verification and governance infrastructure in the reliable deployment of autonomous AI systems.
 
-**Runtime Verification for Autonomous AI Agents: Toward Decision Evidence Infrastructure for Reliable Agent Systems**
+- *Runtime Verification for Autonomous AI Agents*
+- *Runtime Governance for Workflow-Realistic AI Agents*
 
 ---
 
 # Notes
 
-This repository intentionally contains only the minimal structured data required to analyze the experiments.
+This repository intentionally contains only the data required to interpret experimental results at the level presented in the associated research.
 
-Additional experiments may be added over time as further runtime verification studies are conducted.
+Additional experiments and datasets may be added over time as the research program expands.
