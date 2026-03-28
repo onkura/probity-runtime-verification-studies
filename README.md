@@ -110,32 +110,46 @@ Experiment_02/run_review.csv
 
 ---
 
-## Experiment 03 — Multi-Agent & Runtime Governance Stress Testing
+## Experiment 03 — System Architecture, External Governance, and the Governance Void
 
-A multi-agent and extended workflow experiment evaluating how agents behave under **increased coordination complexity, longer execution chains, and real-world-style runtime conditions**.
+A controlled experiment evaluating whether **system architecture and external governance mechanisms** can resolve the runtime reliability failures identified in earlier experiments.
 
-This experiment expands beyond single-agent execution to test:
+This study isolates architecture as the variable, comparing five system types:
 
-- multi-step and multi-agent workflows  
-- dependency handling and intermediate state transitions  
-- persistence of behavioral failure patterns across extended execution  
-- robustness of governance signals under higher system complexity  
+- raw LLM execution  
+- structured “best-practice” prompting systems  
+- agent frameworks with tool orchestration  
+- externally governed variants of each system  
+
+Across **850 runs, 17 scenarios, and three complexity tiers**, the experiment tests whether changes in execution architecture — or the addition of external governance — materially improve reliability.
 
 This phase shows:
 
-> As execution complexity increases, outcome correctness becomes an increasingly unreliable proxy for behavioral validity.
+> The governance void is architectural — no system design tested produces reliable execution, and external governance degrades system functionality without resolving the underlying problem.
 
 Key observations:
 
-- Failure modes compound across steps and agents, often without affecting final outcomes  
-- Agents exhibit **consistent behavioral signatures** even in extended workflows  
-- Governance-relevant signals (e.g., constraint violations, invalid transitions) scale with complexity  
-- Multi-agent coordination introduces new classes of **latent execution failures** not captured by outcome-based metrics  
+- **No architecture succeeds**: only 29 / 850 runs pass (3.4%), with **0% pass rates in all multi-step and compounding workflows**  
+- **Failures are architecture-invariant**: failure modes persist across raw LLMs, structured systems, and agent frameworks  
+- **External governance is insufficient**: while it correctly enforces constraints, it prevents systems from completing tasks  
+- **The external governance paradox emerges**:  
+  - ungoverned systems are **functional but unsafe**  
+  - governed systems are **safe but non-functional**  
+- **Agent architectures degrade the most under governance**, with pass rates dropping to 0% and system failures increasing materially  
+- **74% of governed actions are blocked**, indicating that current systems cannot operate under real-world constraints even when enforcement is correct  
+
+This experiment establishes that:
+
+> Reliable autonomous execution cannot be achieved through model improvements, system architecture changes, or externally applied governance layers.
+
+Instead, the results motivate:
+
+> **Runtime governance as infrastructure** — a control plane embedded within the system itself, enabling agents to reason about and operate within constraints, rather than having constraints imposed externally.
 
 Dataset:
 
 ```
-Experiment_03/run_review.csv
+Experiment_03/all_run_review_rows.csv
 ```
 
 ---
@@ -162,8 +176,8 @@ They do **not** include:
 
 These datasets accompany research on the role of runtime verification and governance in reliable AI systems:
 
-- *Runtime Verification for Autonomous AI Agents*  
-- *Runtime Governance for Workflow-Realistic AI Agents*  
+- *Runtime Verification for Autonomous AI Agents (P-01)*  
+- *Runtime Governance for Workflow-Realistic AI Agents (P-02)*  
 - *Multi-Agent Runtime Behavior & Governance (P-03)*  
 
 ---
