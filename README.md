@@ -5,7 +5,7 @@ This repository contains datasets and supporting materials from a series of expe
 As large language models evolve from conversational systems into **operational agents capable of executing actions**, new infrastructure is required to evaluate not only whether tasks succeed, but whether agents behave correctly during execution.
 
 Traditional evaluation approaches measure outcomes.  
-These experiments focus instead on **runtime behavior** — how agents gather evidence, follow workflow constraints, make decisions, and respond to failure conditions.
+These experiments focus instead on **runtime behavior and governance infrastructure**
 
 ---
 
@@ -154,6 +154,57 @@ Experiment_03/all_run_review_rows.csv
 
 ---
 
+## Experiment 04 — Runtime Governance as Invariant Infrastructure
+
+A controlled experiment evaluating whether **runtime governance infrastructure itself** — independent of task performance — operates correctly, consistently, and completely across domains and model providers.
+
+This phase shifts focus from system performance (P-03) to infrastructure correctness:
+
+> Not whether systems succeed under governance, but whether governance infrastructure works.
+
+Across **750 runs, 3 policy domains, 2 model providers, and 5 system architectures**, the experiment evaluates a full runtime governance stack, including:
+
+- per-action policy evaluation (ALLOW / REQUIRE / DENY)  
+- tamper-evident decision records (Policy Restriction Evidence, PRE)  
+- evidence chain completeness  
+- post-hoc reconstruction of decision trails  
+
+Key findings:
+
+- **100% evidence chain completeness**: every governed action produces a verified, gap-free record  
+- **100% reconstruction fidelity**: full decision trails recoverable from stored evidence alone, without execution traces  
+- **Cross-domain invariance**: governance infrastructure operates identically across operational, security, and organizational policies  
+- **Cross-model invariance**: identical enforcement, verification, and reconstruction behavior across model providers  
+- **Policy vs. infrastructure separation**:  
+  - enforcement infrastructure is **domain-invariant**  
+  - policy content is **domain-specific**  
+
+Three distinct enforcement profiles emerge from the same system:
+
+- DENY-dominant (operational constraints)  
+- REQUIRE-dominant (security constraints)  
+- ALLOW / REQUIRE balanced (organizational policies)  
+
+This experiment establishes:
+
+> Runtime governance can function as a single, reusable infrastructure layer — independent of model, domain, or application.
+
+Where P-03 shows that external governance fails, P-04 demonstrates that:
+
+> Governance must exist as **infrastructure**, not as a wrapper.
+
+Dataset:
+```
+Experiment_04/operational_run_review.csv
+```
+```
+Experiment_04/organizational_run_review.csv
+```
+```
+Experiment_04/security_run_review.csv
+```
+---
+
 # Dataset Scope
 
 The datasets provide **structured, run-level summaries** of controlled experiments.
@@ -178,7 +229,8 @@ These datasets accompany research on the role of runtime verification and govern
 
 - *Runtime Verification for Autonomous AI Agents (P-01)*  
 - *Runtime Governance for Workflow-Realistic AI Agents (P-02)*  
-- *Multi-Agent Runtime Behavior & Governance (P-03)*  
+- *System Architecture, External Governance, and the Governance Void (P-03)*  
+- *Runtime Governance as Invariant Infrastructure (P-04)*
 
 ---
 
