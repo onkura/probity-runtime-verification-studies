@@ -1,4 +1,4 @@
-# Agent Runtime Verification & Governance
+# AI Runtime Verification & Governance
 
 This repository contains datasets and supporting materials from a series of experiments investigating the behavior of autonomous AI agents under **runtime verification and governance**.
 
